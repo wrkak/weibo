@@ -99,6 +99,17 @@ class UsersController extends Controller
         });
     }
 
+    //还记得 账户激活 一节的邮件发送逻辑吗？现在我们已经在环境配置文件完善了邮件的发送配置，因此不再需要使用   from  方法：
+    // protected function sendEmailConfirmationTo($user)
+    // {
+    //     $view = 'emails.confirm';
+    //     $data = compact('user');
+    //     $to = $user->email;
+    //     $subject = "感谢注册 Weibo 应用！请确认你的邮箱。";
+    //     Mail::send($view, $data, function ($message) use ($to, $subject) {
+    //     $message->to($to)->subject($subject);
+    //     });
+    // }
     public function confirmEmail($token)
         {
             $user = User::where('activation_token', $token)->firstOrFail();
